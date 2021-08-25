@@ -42,9 +42,12 @@ def get_way(outDoorDate,outDoorTime,from_address,to_address,city_code):
     costs = []
     #遍历出行方案
     for detail in transits[:] :
-        #去掉没有金额的情况
+        #没有金额的情况时，默认5元
         if detail['cost'] == None or detail['cost'] == []:
-            continue
+            #默认5块钱通勤
+            cost = "5"
+        else:
+            cost = detail['cost']
         cost = detail['cost']
         duration = detail['duration']
         walking_distance = detail['walking_distance']
